@@ -5,6 +5,8 @@ import {AUTH_USER, AUTH_USER_ERR} from "../actions/types";
 
 export const signupSubmit = (userSignUp, callback) => async dispatch =>{
     const tokenKey = 'token';
+    const userID = 'userID';
+    const userName= 'userName';
     
     try{
 
@@ -14,8 +16,11 @@ export const signupSubmit = (userSignUp, callback) => async dispatch =>{
         data: userSignUp,
     });
 
-    dispatch({type: AUTH_USER, payload: response.data.token });
+    dispatch({type: AUTH_USER, payload: response.data });
     localStorage.setItem(tokenKey, response.data.token);
+        localStorage.setItem(userID, response.data.userID);
+        localStorage.setItem(userName, response.data.userName);
+
 
     dispatch(reset('signup'));
     callback()

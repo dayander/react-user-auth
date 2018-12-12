@@ -9,7 +9,7 @@ export const signup = (signUpData) =>{
 
 
 
-    console.log(1);
+
 
 
     return function (dispatch) {

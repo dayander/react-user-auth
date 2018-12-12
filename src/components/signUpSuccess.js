@@ -11,7 +11,7 @@ let SignUpSuccess = () => {
             <h1>Sign Up Success!</h1>
 
 
-            <Link to={'/home'}> Home </Link>
+            <Link to={'/'}> Home </Link>
 
 
         </div>

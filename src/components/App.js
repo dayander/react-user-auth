@@ -1,5 +1,6 @@
 import React from 'react';
-import {Header} from './Header';
+import Header from './Header';
+import {Footer} from "./Footer";
 
 
 
@@ -8,7 +9,11 @@ export const App = ({children}) => {
     return(
         <div>
             <Header/>
-            {children}
+                <main>
+                    {children}
+                </main>
+
+            <Footer/>
         </div>
     )
 

@@ -13,12 +13,15 @@ import SignUpPage from "./pages/signupPage";
 
 import reducers from './reducers/index';
 import SignUpSuccess from "./components/signUpSuccess";
+import DashboardPage from "./pages/dashboard";
+import {MuiThemeProvider } from '@material-ui/core/styles';
+import {theme} from "./material-ui/theme";
 
 
 const middleware =  applyMiddleware( thunk, logger);
 
 const store = createStore(reducers, {
-    auth: {authenticated: localStorage.getItem('token')}
+    auth: {authenticated: localStorage.getItem('token'), userID: localStorage.getItem('userID'), userName: localStorage.getItem('userName') }
 }, middleware);
 
 
@@ -27,12 +30,15 @@ const Main =() =>{
     return (
     <Provider store={store} >
         <BrowserRouter>
+            <MuiThemeProvider theme={theme}>
             <App>
                 <Route path={'/'} exact component={Home}/>
                 <Route path={'/signup'} component={SignUpPage} />
                 <Route path={'/login'} component={LoginPage}/>
                 <Route path={'/signupsuccess'} component={SignUpSuccess}/>
+                <Route path={'/dashboard'} component={DashboardPage}/>
             </App>
+            </MuiThemeProvider>
         </BrowserRouter>
     </Provider>
 )

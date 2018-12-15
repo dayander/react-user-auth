@@ -10,10 +10,15 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import TextField from '@material-ui/core/TextField';
+import {Link} from 'react-router-dom'
+import Grid from '@material-ui/core/Grid'
+
 
 const styles = theme => ({
     root: {
         width: '100%',
+        marginBottom: '15px'
     },
     heading: {
         fontSize: theme.typography.pxToRem(15),
@@ -33,9 +38,13 @@ const styles = theme => ({
     column: {
         flexBasis: '33.33%',
     },
+    column2: {
+        flexBasis: '65.33%',
+    },
     helper: {
         borderLeft: `2px solid ${theme.palette.divider}`,
         padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+
     },
     link: {
         color: theme.palette.primary.main,
@@ -43,45 +52,57 @@ const styles = theme => ({
         '&:hover': {
             textDecoration: 'underline',
         },
+        smallText:{
+            fontSize: '18px !important'
+        }
     },
 });
 
 const ProjectExpansionDetailPanel=(props)=> {
-    const { classes } = props;
+    const { classes, project } = props;
+
+    const topIdeas = project.topIdeas.map((idea, i)=>{
+        return<p key={i}>{idea.ideaString}</p>
+    })
+
     return (
         <div className={classes.root}>
-            <ExpansionPanel defaultExpanded>
+            <ExpansionPanel >
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                     <div className={classes.column}>
-                        <Typography className={classes.heading}>Location</Typography>
+                        <Typography className={classes.heading}>{project.projectName}</Typography>
                     </div>
-                    <div className={classes.column}>
-                        <Typography className={classes.secondaryHeading}>Select trip destination</Typography>
-                    </div>
+
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails className={classes.details}>
-                    <div className={classes.column} />
-                    <div className={classes.column}>
-                        <Chip label="Barbados" className={classes.chip} onDelete={() => {}} />
-                    </div>
-                    <div className={classNames(classes.column, classes.helper)}>
-                        <Typography variant="caption">
-                            Select your destination of choice
-                            <br />
-                            <a href="#sub-labels-and-columns" className={classes.link}>
-                                Learn more
-                            </a>
+                    <Grid container>
+                    <Grid item xs={12} md={4}>
+                        <Typography variant={'h3'} component={'h3'} className={classes.heading}>Top Ideas</Typography>
+                        {topIdeas}
+                    </Grid>
+
+
+
+
+                    <Grid item xs={12} md={8}>
+                        <Typography variant="h3" component={'h3'} className={classes.smallText} >
+                            Problem Description
                         </Typography>
-                    </div>
+                        <Typography variant='caption' component={'p'}>
+                            {project.projectDescription}
+                        </Typography>
+                    </Grid>
+
+                    </Grid>
                 </ExpansionPanelDetails>
                 <Divider />
                 <ExpansionPanelActions>
-                    <Button size="small">Cancel</Button>
-                    <Button size="small" color="primary">
-                        Save
-                    </Button>
+                   <Link to={'./projects/'+project.userID +'/'+ project._id} >
+                       View Ideas
+                   </Link>
                 </ExpansionPanelActions>
             </ExpansionPanel>
+
         </div>
     );
 }

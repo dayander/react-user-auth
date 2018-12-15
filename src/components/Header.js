@@ -106,6 +106,19 @@ let HeaderBase = (props) =>{
             )
 
 
+    let signUpLogin = (
+        <div>
+
+        <ListItem onClick={props.handleDrawerClose}>
+            <Link to={'/signup'} >Sign Up</Link>
+        </ListItem>
+        <ListItem onClick={props.handleDrawerClose}>
+<Link  to={'/login'} >Login</Link>
+</ListItem>
+        </div>
+    )
+
+
 
 
 
@@ -145,12 +158,7 @@ let HeaderBase = (props) =>{
                             <ListItem onClick={props.handleDrawerClose}>
                                 <Link to={'/dashboard'} >Dashboard</Link>
                             </ListItem>
-                            <ListItem onClick={props.handleDrawerClose}>
-                                <Link to={'/signup'} >Sign Up</Link>
-                            </ListItem>
-                            <ListItem onClick={props.handleDrawerClose}>
-                                <Link  to={'/login'} >Login</Link>
-                            </ListItem>
+                            {(props.auth)? '': signUpLogin }
 
                         </List>
                     </nav>

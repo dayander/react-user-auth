@@ -1,7 +1,7 @@
 import blue from "@material-ui/core/colors/blue";
 import red from "@material-ui/core/colors/red";
 import orange from "@material-ui/core/colors/orange";
-import purple from "@material-ui/core/colors/purple";
+import deepOrange from "@material-ui/core/colors/deepOrange";
 import {createMuiTheme} from "@material-ui/core/styles/index";
 
 export const theme = createMuiTheme({
@@ -10,12 +10,12 @@ export const theme = createMuiTheme({
     },
     palette: {
         primary: orange,
-        secondary: orange,
+        secondary: deepOrange,
     },
     overrides:{
         MuiAppBar:{
             root:{
-                background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+                background: 'linear-gradient(45deg, #FF9801 30%, #FF3D00 90%)',
             }
         },
 

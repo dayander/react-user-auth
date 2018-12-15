@@ -16,6 +16,7 @@ import SignUpSuccess from "./components/signUpSuccess";
 import DashboardPage from "./pages/dashboard";
 import {MuiThemeProvider } from '@material-ui/core/styles';
 import {theme} from "./material-ui/theme";
+import DetailIdeasPage from "./pages/detailIdeasPage";
 
 
 const middleware =  applyMiddleware( thunk, logger);
@@ -37,6 +38,8 @@ const Main =() =>{
                 <Route path={'/login'} component={LoginPage}/>
                 <Route path={'/signupsuccess'} component={SignUpSuccess}/>
                 <Route path={'/dashboard'} component={DashboardPage}/>
+                <Route path={'/projects/:userID/:projectID'} component={DetailIdeasPage}/>
+
             </App>
             </MuiThemeProvider>
         </BrowserRouter>

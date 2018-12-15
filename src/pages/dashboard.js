@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {requireAuth} from "../auth/requireAuth";
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
+import FilterPanelBase from '../components/filterPanelBase'
 
 
 
@@ -30,21 +31,23 @@ console.log(this.props.classes.paper);
 
 
         let projectList = this.props.projects.map((project, i)=>{
+
            return(
                <div key={i}>
-                <ProjectExpansionDetailPanel/>
+                <ProjectExpansionDetailPanel project={project}/>
                </div>
            )
         });
 
         return(
             <div>
-                <h1>Project Dashboard</h1>
-                <Paper   />
+                <Paper className={this.props.classes.paper}>
+                <FilterPanelBase />
 
 
 
                 {projectList}
+                </Paper >
             </div>
         )
     }
@@ -57,9 +60,9 @@ console.log(this.props.classes.paper);
 const styles = theme => ({
     paper: {
         marginTop: theme.spacing.unit * 8,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+
+
+
         padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`
     }
 });

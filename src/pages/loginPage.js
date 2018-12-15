@@ -10,7 +10,7 @@ class LoginPage extends React.Component {
     submit = values => {
 
         this.props.loginSubmit(values, ()=>{
-            this.props.history.push('./signupsuccess')
+            this.props.history.push('./dashboard')
         });
 
 

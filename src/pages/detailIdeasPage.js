@@ -19,7 +19,7 @@ class DetailIdeasPage extends React.Component{
 
     return(
         <div>
-            <IdeaFilterController />
+            <IdeaFilterController projectFromParent={this.props.projects} />
 
         </div>
     )

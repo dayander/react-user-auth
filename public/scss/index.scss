@@ -118,3 +118,18 @@ background: transparent;
 }
 
 
+.input-normal{
+  font: inherit;
+  color: currentColor;
+  width: 100%;
+  border: 0;
+  margin: 0;
+  padding: 6px 0 7px;
+  display: block;
+  min-width: 0;
+  box-sizing: content-box;
+  background: none;
+  -webkit-tap-highlight-color: transparent;
+
+}
+

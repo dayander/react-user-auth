@@ -1,12 +1,16 @@
 import React, {Component} from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
-import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import {connect} from 'react-redux';
 import ProjectDescription from "./projectDescription";
 import EditableProjectTitle from './EditProjectTitle'
 import Grid from '@material-ui/core/Grid'
+import AddIdeaForm from '../forms/AddIdeaForm';
+import Divider from '@material-ui/core/Divider';
+import IdeaList from '../layout/ideaList'
+import {IdeaFilterHolder} from "../ideas/ideaFilterHolder";
+
 
 const styles = theme => ({
     feed: {
@@ -49,6 +53,9 @@ const styles = theme => ({
         background: 'linear-gradient(45deg, #FF9801 30%, #FF3D00 90%)',
         width: 'calc(100% - 15px)',
         overflow: 'hidden'
+    },
+    divider:{
+        margin: '15px 0 30px 0'
     }
 
 
@@ -61,7 +68,8 @@ class IdeaFilerController extends Component {
 
     render() {
 
-        const {classes, project} = this.props;
+        const {classes, project, projectFromParent} = this.props;
+
         return (
             <Paper
                 className={classes.feedItem}
@@ -81,9 +89,23 @@ class IdeaFilerController extends Component {
 
                     <ProjectDescription  />
                 </div>
-                <div className={classes.buttons}>
-                    FilerIdeas here
+                <Divider className={classes.divider}/>
+                <div >
+                    <AddIdeaForm/>
+
                 </div>
+                <Divider className={classes.divider}/>
+
+                <IdeaFilterHolder />
+
+
+                <IdeaList project={projectFromParent}/>
+
+
+
+
+
+
             </Paper>
         )
     }

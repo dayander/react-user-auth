@@ -74,6 +74,9 @@ export const updateProjectName = (project, node) =>{
 
 
 
+
+
+
     const url = 'http://localhost:3090/projects/'+userID+ '/'+ _id;
 
     return dispatch=>{
@@ -98,6 +101,14 @@ export const updateProjectName = (project, node) =>{
 
 };
 
+
+
+export const createNewProject = () =>{
+
+    
+
+
+};
 
 
 

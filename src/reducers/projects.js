@@ -1,4 +1,5 @@
 import {
+    ADD_IDEA_TO_PROJECT, ADD_IDEA_TO_PROJECT_ERROR, DELETE_IDEA_FROM_PROJECT, DELETE_IDEA_FROM_PROJECT_ERROR,
     GET_PROJECTS,
     GET_PROJECTS_ERROR,
     GET_SINGLE_PROJECT,
@@ -9,7 +10,7 @@ import {
 const initialState = {
 
     projects:[],
-    singleProject:{},
+    singleProject:{ideas:[]},
     projectTitleIsEditable: false
 
 
@@ -40,13 +41,29 @@ export const projectsReducer=(state=initialState, action) =>{
         case GET_SINGLE_PROJECT_ERROR:
             return {...state, errorMessage: action.payload};
         case PROJECT_TITLE_EDITABLE:
-            return{...state, projectTitleIsEditable:true}
+            return{...state, projectTitleIsEditable:true};
 
         case UPDATE_PROJECT_TITLE:
             return {
                 ...state,
                 singleProject: {...action.payload}
             };
+        case ADD_IDEA_TO_PROJECT:
+            return{
+            ...state,
+            singleProject: {...action.payload}
+        };
+        case ADD_IDEA_TO_PROJECT_ERROR:
+            return {...state, errorMessage: action.payload};
+        case DELETE_IDEA_FROM_PROJECT:
+            return{
+                ...state,
+                singleProject: {...action.payload}
+            };
+        case DELETE_IDEA_FROM_PROJECT_ERROR:
+            return {...state, errorMessage: action.payload};
+
+
         default:
             return state;
 

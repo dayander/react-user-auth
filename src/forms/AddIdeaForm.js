@@ -83,7 +83,7 @@ class AddIdeaForm extends React.Component{
                           className={classes.input}>
 
 
-                    Addn Idea
+                    Add Idea
 
                 </Button>
             </form>

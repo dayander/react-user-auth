@@ -13,7 +13,8 @@ import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import {Link} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
-
+import DeleteProjectModal from './ProjectDeleteModal';
+import BiWordLink from "../bi-word/BiWordLink";
 
 const styles = theme => ({
     root: {
@@ -97,9 +98,15 @@ const ProjectExpansionDetailPanel=(props)=> {
                 </ExpansionPanelDetails>
                 <Divider />
                 <ExpansionPanelActions>
+                    <BiWordLink userID={project.userID} projectID={project._id}>
+                        Add Ideas with Bi-Word
+                    </BiWordLink>
+
                    <Link to={'./projects/'+project.userID +'/'+ project._id} >
                        View Ideas
                    </Link>
+
+                    <DeleteProjectModal userID={project.userID} projectID={project._id} />
                 </ExpansionPanelActions>
             </ExpansionPanel>
 

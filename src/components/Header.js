@@ -105,6 +105,13 @@ let HeaderBase = (props) =>{
         </div>
             )
 
+    let loggedInMenu = (
+        <ListItem onClick={props.handleDrawerClose}>
+            <Link to={'/settings'} >Settings</Link>
+        </ListItem>
+
+    )
+
 
     let signUpLogin = (
         <div>
@@ -158,7 +165,7 @@ let HeaderBase = (props) =>{
                             <ListItem onClick={props.handleDrawerClose}>
                                 <Link to={'/dashboard'} >Dashboard</Link>
                             </ListItem>
-                            {(props.auth)? '': signUpLogin }
+                            {(props.auth)? loggedInMenu: signUpLogin }
 
                         </List>
                     </nav>

@@ -1,11 +1,13 @@
 import axios from 'axios';
+import history from '../util/history';
 import {
+    CREATE_NEW_PROJECT, CREATE_NEW_PROJECT_ERROR, DELETE_PROJECT_ERROR,
     GET_PROJECTS,
     GET_PROJECTS_ERROR,
     GET_SINGLE_PROJECT,
     GET_SINGLE_PROJECT_ERROR,
-    PROJECT_TITLE_EDITABLE, UPDATE_PROJECT_TITLE, UPDATE_PROJECT_TITLE_ERROR
-} from "./types";
+    PROJECT_TITLE_EDITABLE, UPDATE_PROJECT_TITLE, UPDATE_PROJECT_TITLE_ERROR,
+    DELETE_PROJECT} from "./types";
 
 import {reset} from 'redux-form';
 
@@ -103,9 +105,67 @@ export const updateProjectName = (project, node) =>{
 
 
 
-export const createNewProject = () =>{
+export const createNewProject = (userID) =>{
 
-    
+    console.log('userID', userID)
+
+
+    const url = 'http://localhost:3090/create-project/'+userID;
+
+
+    return dispatch =>{
+    axios.post(url)
+        .then(response=>{
+            dispatch({
+                type: CREATE_NEW_PROJECT,
+                payload: response.data
+            })
+
+            history.push('/projects/'+response.data.userID + '/'+ response.data._id)
+
+
+        })
+        .catch(err=>{
+            dispatch({
+                type: CREATE_NEW_PROJECT_ERROR,
+                payload: err
+            })
+        })
+
+    }
+
+
+
+};
+
+
+
+export const deleteProject = (userID, projectID) =>{
+
+
+    const url = 'http://localhost:3090/delete-project/'+userID+'/'+ projectID;
+
+
+    return dispatch =>{
+        axios.delete(url)
+            .then(response=>{
+                dispatch({
+                    type: DELETE_PROJECT,
+                    payload: response.data
+                })
+
+
+
+            })
+            .catch(err=>{
+                dispatch({
+                    type: DELETE_PROJECT_ERROR,
+                    payload: err
+                })
+            })
+
+    }
+
 
 
 };

@@ -56,7 +56,7 @@ class EditProjectDescriptionForm extends React.Component{
     return(
         <form className={classes.description} onSubmit={handleSubmit(updateProjectName)}>
 
-            <FormLabel className={classes.label}  htmlFor={'project-description'}>
+            <FormLabel className={classes.label}  htmlFor={'projectDescription'}>
                 Project Description
             </FormLabel>
 

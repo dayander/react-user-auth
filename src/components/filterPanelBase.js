@@ -3,6 +3,9 @@ import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 
+import {connect} from 'react-redux';
+import {createNewProject} from "../actions/projects";
+
 const styles = theme => ({
     feed: {
         width: '100%',
@@ -38,21 +41,40 @@ const styles = theme => ({
 })
 
 class FilterPanelBase extends Component {
-    state = {elevation: 3}
+
+    constructor(props){
+        super(props);
+
+
+        this.state ={
+            elevation: 3
+        }
+    }
+
+
+
+
+
     render() {
-        const {classes} = this.props;
+
+        const createProject=()=>{
+            this.props.createNewProject(this.props.userID, this.props.history)
+        };
+
+        console.log(this.props)
+
         return (
             <Paper
-                className={classes.feedItem}
+                className={this.props.classes.feedItem}
                 elevation={this.state.elevation}
 
             >
 
-                <h1 className={classes.panelHeader}>Project Dashboard</h1>
+                <h1 className={this.props.classes.panelHeader}>Project Dashboard</h1>
 
                 <p>Lots of fun here</p>
-                <div className={classes.buttons}>
-                    <Button  color="primary" onClick={this.props.onClick}>Primary</Button>
+                <div className={this.props.classes.buttons}>
+                    <Button  color="primary" onClick={createProject}>Create New Project</Button>
                     <Button  color="secondary" onClick={this.props.onClick}>Secondary Button</Button>
                 </div>
             </Paper>
@@ -60,4 +82,22 @@ class FilterPanelBase extends Component {
     }
 }
 
-export default withStyles(styles, {withTheme: true})(FilterPanelBase)
+
+const mapStateToProps = (state) =>{
+    return({
+        userID: state.auth.userID
+    })
+};
+
+const mapActionToDispatch = (dispatch) =>{
+
+    return{
+        createNewProject: (userID, history) => dispatch(createNewProject(userID, history))
+    }
+
+};
+
+
+FilterPanelBase = connect(mapStateToProps, mapActionToDispatch)(FilterPanelBase);
+
+export default withStyles(styles, {withTheme: true})(FilterPanelBase);//

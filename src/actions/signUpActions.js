@@ -7,14 +7,8 @@ import {reset} from 'redux-form';
 
 export const signup = (signUpData) =>{
 
-
-
-
-
-
     return function (dispatch) {
         axios.post("http://localhost:3090/signup", signUpData).then(response => {
-            console.log(3);
             dispatch(reset('signup'));
 
         })
